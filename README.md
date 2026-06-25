@@ -6,9 +6,11 @@ A React Native currency conversion app built with Expo, TypeScript, and TanStack
 
 ## Screenshots
 
+## Screenshots
+
 | Splash Screen | Converter |
 |---|---|
-| ![Splash](assets/screenshots/splash.png) | ![Converter](assets/screenshots/converter.png) |
+| <img src="assets/screenshots/splash.png" width="250" height="120"> | <img src="assets/screenshots/converter.png" width="250" height="120"> |
 
 ## Prerequisites
 
