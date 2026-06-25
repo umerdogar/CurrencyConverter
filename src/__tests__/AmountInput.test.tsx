@@ -26,11 +26,19 @@ describe('AmountInput', () => {
     expect(onChangeText).toHaveBeenCalledWith('100');
   });
 
-  it('renders with numeric keyboard type', () => {
+  it('renders with decimal-pad keyboard type for non-JPY', () => {
     const { getByPlaceholderText } = render(
-      <AmountInput value="" onChangeText={jest.fn()} />
+      <AmountInput value="" onChangeText={jest.fn()} currency="USD" />
     );
     const input = getByPlaceholderText('0.00');
-    expect(input.props.keyboardType).toBe('numeric');
+    expect(input.props.keyboardType).toBe('decimal-pad');
+  });
+  
+  it('renders with number-pad keyboard type for JPY', () => {
+    const { getByPlaceholderText } = render(
+      <AmountInput value="" onChangeText={jest.fn()} currency="JPY" />
+    );
+    const input = getByPlaceholderText('0');
+    expect(input.props.keyboardType).toBe('number-pad');
   });
 });

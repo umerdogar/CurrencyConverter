@@ -50,5 +50,17 @@ export const conversionStyles = StyleSheet.create({
   },
   postImage:{
     alignSelf:"center"
-  }
+  },
+  swapButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: spacing.sm,
+    marginVertical: spacing.md,
+  },
+  swapText: {
+    fontSize: fontSizes.xl,
+    color: colors.primary,
+    fontWeight: '700',
+  },
 });

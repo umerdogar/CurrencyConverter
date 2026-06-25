@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { View, Text, Alert, ActivityIndicator , TouchableWithoutFeedback, Keyboard } from "react-native";
+import { View, Text, Alert, ActivityIndicator, TouchableWithoutFeedback, TouchableOpacity, Keyboard } from "react-native";
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { conversionStyles as styles } from "./styles";
 import { CurrencyPicker ,AmountInput  } from "@components";  
 import { useExchangeRates } from "@hooks/useExchangeRates";
@@ -23,6 +24,7 @@ export default function ConversionScreen({
   const [toCurrency, setToCurrency] = useState(initialToCurrency);
   const [fromAmount, setFromAmount] = useState("");
   const [toAmount, setToAmount] = useState("");
+  const insets = useSafeAreaInsets();
 
   const { rates, currencies, isLoading, isError } =
     useExchangeRates(fromCurrency);
@@ -51,6 +53,14 @@ export default function ConversionScreen({
       const decimals = getDecimalPlaces(fromCurrency);
       setFromAmount((parseFloat(value) / rate).toFixed(decimals));
     }
+  };
+
+  const handleSwapCurrencies = () => {
+    setFromCurrency(toCurrency);
+    setToCurrency(fromCurrency);
+    setFromAmount('');
+    setToAmount('');
+    savePreferences(toCurrency, fromCurrency);
   };
 
   const handleFromCurrencyChange = (value: string) => {
@@ -99,7 +109,8 @@ export default function ConversionScreen({
   const toSymbol = currencySymbols[toCurrency];
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-    <View style={styles.container}>
+    <View style={[styles.container, { paddingTop: insets.top }]}>
+  
       <SwapIcon width={80} height={80} style={styles.postImage}/>
       <Text style={styles.label}>Swap from</Text>
 
@@ -113,7 +124,10 @@ export default function ConversionScreen({
       <AmountInput value={fromAmount} onChangeText={handleFromAmountChange}  currency={fromCurrency} symbol={fromSymbol}
       />
 
-      <Text style={styles.toLabel}>to</Text>
+      <TouchableOpacity style={styles.swapButton} onPress={handleSwapCurrencies}>
+          <Text style={styles.swapText}>⇅</Text>
+          {/* <Text style={styles.toLabel}>to</Text> */}
+      </TouchableOpacity> 
 
       {toRate && (
         <Text style={styles.rateLabel}>
