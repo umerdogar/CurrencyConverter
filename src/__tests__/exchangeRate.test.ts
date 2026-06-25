@@ -1,4 +1,3 @@
-// src/__tests__/exchangeRate.test.ts
 import { fetchRates } from '../api/exchangeRate';
 
 const mockRates = {

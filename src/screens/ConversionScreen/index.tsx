@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import { View, Text, Alert, ActivityIndicator } from "react-native";
+import { View, Text, Alert, ActivityIndicator , TouchableWithoutFeedback, Keyboard } from "react-native";
 import { conversionStyles as styles } from "./styles";
-import AmountInput from "@components/AmountInput";
-import CurrencyPicker from "@components/CurrencyPicker";
+import { CurrencyPicker ,AmountInput  } from "@components";  
 import { useExchangeRates } from "@hooks/useExchangeRates";
-import { currencySymbols } from "@utils/currencySymbols";
+import { currencySymbols } from '@utils/currencySymbols';
 import { savePreferences } from "@storage";
 import { colors } from "@styles/colors";
+import SwapIcon from '@assets/svg/SwapFrom.svg';
 
 const getDecimalPlaces = (currency: string) => (currency === "JPY" ? 0 : 2);
 
@@ -98,20 +98,23 @@ export default function ConversionScreen({
   const fromSymbol = currencySymbols[fromCurrency];
   const toSymbol = currencySymbols[toCurrency];
   return (
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
     <View style={styles.container}>
+      <SwapIcon width={80} height={80} style={styles.postImage}/>
       <Text style={styles.label}>Swap from</Text>
 
       <CurrencyPicker
         selectedValue={fromCurrency}
         currencies={currencies}
         onValueChange={handleFromCurrencyChange}
+        
       />
 
-      <AmountInput value={fromAmount} onChangeText={handleFromAmountChange} />
+      <AmountInput value={fromAmount} onChangeText={handleFromAmountChange}  currency={fromCurrency} symbol={fromSymbol}
+      />
 
       <Text style={styles.toLabel}>to</Text>
 
-      {/* Rate comparison line */}
       {toRate && (
         <Text style={styles.rateLabel}>
           {fromCurrency} {fromSymbol}1.00 = {toCurrency} {toSymbol}
@@ -125,7 +128,9 @@ export default function ConversionScreen({
         onValueChange={handleToCurrencyChange}
       />
 
-      <AmountInput value={toAmount} onChangeText={handleToAmountChange} />
+      <AmountInput value={toAmount} onChangeText={handleToAmountChange} currency={toCurrency} symbol={toSymbol}
+      />
     </View>
+    </TouchableWithoutFeedback>
   );
 }

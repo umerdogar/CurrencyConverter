@@ -1,4 +1,3 @@
-// App.tsx
 import React, { useState } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import SplashScreen from "@screens/SplashScreen";
@@ -14,12 +13,10 @@ export default function App() {
   const [toCurrency, setToCurrency] = useState("USD");
 
   const handleReady = async () => {
-    // Load saved preferences
     const { from, to } = await loadPreferences();
     setFromCurrency(from);
     setToCurrency(to);
 
-    // Prefetch rates into TanStack Query cache
     await queryClient.prefetchQuery({
       queryKey: ["rates", from],
       queryFn: () => fetchRates(from),

@@ -13,15 +13,16 @@ export const conversionStyles = StyleSheet.create({
     paddingTop: spacing.xxl,
   },
   label: {
-    fontSize: fontSizes.xl,
+    fontSize: fontSizes.lg,
     fontWeight: "700",
     color: colors.textPrimary,
     textAlign: "center",
     marginBottom: spacing.md,
   },
   toLabel: {
-    fontSize: fontSizes.md,
-    color: colors.textSecondary,
+    fontSize: fontSizes.lg,
+    fontWeight: "700",
+    color: colors.textPrimary,
     textAlign: "center",
     marginVertical: spacing.md,
   },
@@ -36,8 +37,8 @@ export const conversionStyles = StyleSheet.create({
     color: colors.textPrimary,
   },
   rateLabel: {
-    fontSize: fontSizes.sm,
-    color: colors.textSecondary,
+    fontSize: fontSizes.md,
+    color: colors.textPrimary,
     textAlign: "center",
     marginBottom: spacing.md,
   },
@@ -47,4 +48,7 @@ export const conversionStyles = StyleSheet.create({
     color: colors.primary,
     marginTop: spacing.xxl,
   },
+  postImage:{
+    alignSelf:"center"
+  }
 });

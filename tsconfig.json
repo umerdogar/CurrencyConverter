@@ -3,23 +3,65 @@
   "compilerOptions": {
     "strict": true,
     "baseUrl": ".",
+    "types": [
+      "jest",
+      "node"
+    ],
     "paths": {
-      "@styles": ["src/styles/index.ts"],
-      "@styles/*": ["src/styles/*"],
-      "@screens": ["src/screens/index.ts"],
-      "@screens/*": ["src/screens/*"],
-      "@components": ["src/components/index.ts"],
-      "@components/*": ["src/components/*"],
-      "@api": ["src/api/index.ts"],
-      "@api/*": ["src/api/*"],
-      "@storage": ["src/storage/index.ts"],
-      "@storage/*": ["src/storage/*"],
-      "@hooks": ["src/hooks/index.ts"],
-      "@hooks/*": ["src/hooks/*"],
-      "@appTypes": ["src/types/index.ts"],
-      "@appTypes/*": ["src/types/*"],
-      "@utils": ["src/utils/index.ts"],
-      "@utils/*": ["src/utils/*"]
+      "@styles": [
+        "src/styles/index.ts"
+      ],
+      "@styles/*": [
+        "src/styles/*"
+      ],
+      "@screens": [
+        "src/screens/index.ts"
+      ],
+      "@screens/*": [
+        "src/screens/*"
+      ],
+      "@components": [
+        "src/components/index.ts"
+      ],
+      "@components/*": [
+        "src/components/*"
+      ],
+      "@api": [
+        "src/api/index.ts"
+      ],
+      "@api/*": [
+        "src/api/*"
+      ],
+      "@storage": [
+        "src/storage/index.ts"
+      ],
+      "@storage/*": [
+        "src/storage/*"
+      ],
+      "@hooks": [
+        "src/hooks/index.ts"
+      ],
+      "@hooks/*": [
+        "src/hooks/*"
+      ],
+      "@appTypes": [
+        "src/types/index.ts"
+      ],
+      "@appTypes/*": [
+        "src/types/*"
+      ],
+      "@utils": [
+        "src/utils/index.ts"
+      ],
+      "@utils/*": [
+        "src/utils/*"
+      ],
+      "@assets": [
+        "assets/index.ts"
+      ],
+      "@assets/*": [
+        "assets/*"
+      ]
     }
   }
 }

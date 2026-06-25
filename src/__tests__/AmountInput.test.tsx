@@ -1,7 +1,6 @@
-// src/__tests__/AmountInput.test.tsx
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react-native';
-import AmountInput from '../components/AmountInput';
+import { AmountInput } from '@components';
 
 describe('AmountInput', () => {
   it('renders correctly', () => {
