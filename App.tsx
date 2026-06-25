@@ -1,20 +1,43 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+// App.tsx
+import React, { useState } from "react";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import SplashScreen from "@screens/SplashScreen";
+import ConversionScreen from "@screens/ConversionScreen";
+import { loadPreferences } from "@storage";
+import { fetchRates } from "@api";
+
+const queryClient = new QueryClient();
 
 export default function App() {
+  const [isReady, setIsReady] = useState(false);
+  const [fromCurrency, setFromCurrency] = useState("GBP");
+  const [toCurrency, setToCurrency] = useState("USD");
+
+  const handleReady = async () => {
+    // Load saved preferences
+    const { from, to } = await loadPreferences();
+    setFromCurrency(from);
+    setToCurrency(to);
+
+    // Prefetch rates into TanStack Query cache
+    await queryClient.prefetchQuery({
+      queryKey: ["rates", from],
+      queryFn: () => fetchRates(from),
+    });
+
+    setIsReady(true);
+  };
+
+  if (!isReady) {
+    return <SplashScreen onReady={handleReady} />;
+  }
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <QueryClientProvider client={queryClient}>
+      <ConversionScreen
+        initialFromCurrency={fromCurrency}
+        initialToCurrency={toCurrency}
+      />
+    </QueryClientProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

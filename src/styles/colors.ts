@@ -1,0 +1,15 @@
+export const colors = {
+  background: "#F5F5F5",
+  surface: "#FFFFFF",
+  textPrimary: "#1A1A2E",
+  textSecondary: "#888888",
+  textMuted: "#BBBBBB",
+  primary: "#D50032",
+  primaryDark: "#A80028",
+  inputBackground: "#FFFFFF",
+  inputBorder: "#E0E0E0",
+  placeholder: "#AAAAAA",
+  white: "#FFFFFF",
+  black: "#000000",
+  divider: "#EEEEEE",
+};
