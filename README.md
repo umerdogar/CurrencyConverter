@@ -106,3 +106,20 @@ npm run typecheck
 - CI/CD via GitHub Actions
 
 ## Architecture
+src/
+
+├── api/          # API layer (fetchRates)
+
+├── components/   # Reusable components (AmountInput, CurrencyPicker)
+
+├── hooks/        # Custom hooks (useExchangeRates)
+
+├── screens/      # Screens (SplashScreen, ConversionScreen)
+
+├── storage/      # AsyncStorage preferences
+
+├── styles/       # Design tokens (colors, typography, spacing)
+
+├── types/        # TypeScript types
+
+└── utils/        # Utility functions (currencyFlags, currencySymbols)
